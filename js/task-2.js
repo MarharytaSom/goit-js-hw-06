@@ -1,17 +1,28 @@
 class Storage {
-    constructor(items) {
-        this.items = items;
+    #items;
+
+    constructor(items = []) {
+        if (!Array.isArray(items)) {
+            throw new TypeError('Items should be an array');
+        }
+        this.#items = items;
     }
+
     getItems() {
-        return this.items;
+        return this.#items;
     }
+
     addItem(newItem) {
-        this.items.push(newItem)
+        if (newItem === undefined) {
+            throw new Error('Cannot add undefined item');
+        }
+        this.#items.push(newItem);
     }
+
     removeItem(itemToRemove) {
-        const index = this.items.indexOf(itemToRemove);
+        const index = this.#items.indexOf(itemToRemove);
         if (index !== -1) {
-            this.items.splice(index,1)
+            this.#items.splice(index, 1);
         }
     }
 }
