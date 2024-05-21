@@ -1,11 +1,8 @@
 class Storage {
     #items;
 
-    constructor(items = []) {
-        if (!Array.isArray(items)) {
-            throw new TypeError('Items should be an array');
-        }
-        this.#items = items;
+    constructor(initialItems = []) {
+        this.#items = initialItems;
     }
 
     getItems() {
@@ -13,9 +10,6 @@ class Storage {
     }
 
     addItem(newItem) {
-        if (newItem === undefined) {
-            throw new Error('Cannot add undefined item');
-        }
         this.#items.push(newItem);
     }
 
